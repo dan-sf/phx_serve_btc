@@ -131,5 +131,7 @@ docker build .
 
 # Create data dir and copy btc file into it
 mkdir data
-cp bitcoin.csv data/
+cp bitcoin.csv data/ # Actually just move it there and update seeds to point to that file...
+
+
 

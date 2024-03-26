@@ -18,11 +18,11 @@ services:
     volumes:
       - ./data:/app/data
     environment:
-      DATABASE_PATH: /app/data/serve_btc_prod.db
+      DATABASE_PATH: /app/data/phx_serve_btc_prod.db
       # Generated with: mix phx.gen.secret
       SECRET_KEY_BASE: JEX39XUFm6djBvkqbSxgO40Bp9uS7rCYX0coMYaKueYN1hDNbk9heLAj1NCfUT9t
     ports:
       - "4000:4000"
     depends_on:
-      serve_btc_init:
+      phx_serve_btc_init:
         condition: service_completed_successfully

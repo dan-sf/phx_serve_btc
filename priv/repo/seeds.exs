@@ -12,5 +12,5 @@
 
 alias PhxServeBtc.SeedCandleData
 
-SeedCandleData.seed("bitcoin.csv")
+SeedCandleData.seed("data/bitcoin.csv")
 
