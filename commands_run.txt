@@ -54,3 +54,13 @@ Remember to update your repository by running migrations:
 
     $ mix ecto.migrate
 
+# Add the new files to git and commit them
+
+# Run migration
+mix ecto.migrate
+
+# Add the following lines to the router:
+    resources "/btc_candles", BitcoinController, except: [:new, :edit]
+    get "/btc_month/:month", BitcoinController, :get_month
+# The recources line isn't really needed just added here since the gen code already set this up for us
+

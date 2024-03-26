@@ -21,6 +21,18 @@ defmodule PhxServeBtc.CandleData do
     Repo.all(Bitcoin)
   end
 
+
+  @doc """
+  Returns the list of btc_candles. From given start_date to end_date (exclusive)
+  """
+  def list_btc_candles_date_range(start_date, end_date) do
+    Repo.all(
+      from bc in Bitcoin,
+        where: bc.day >= ^start_date and bc.day < ^end_date
+    )
+  end
+
+
   @doc """
   Gets a single bitcoin.
 
