@@ -124,5 +124,12 @@ To list all commands:
     _build/dev/rel/phx_serve_btc/bin/phx_serve_btc
 # ----
 
+# Build docker image
+docker build .
 
+# Create compose file to run the image
+
+# Create data dir and copy btc file into it
+mkdir data
+cp bitcoin.csv data/
 
