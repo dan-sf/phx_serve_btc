@@ -133,5 +133,11 @@ docker build .
 mkdir data
 cp bitcoin.csv data/ # Actually just move it there and update seeds to point to that file...
 
+# Add rel/overlays/bin/seed_btc script so we can seed the prod data
+# Add a function PhxServeBtc.Release.seed_btc so that we can run the seed from there
 
+# Start the server with docker compose up --build
+
+# Exec into the container
+# docker exec -it phx_serve_btc bash
 
