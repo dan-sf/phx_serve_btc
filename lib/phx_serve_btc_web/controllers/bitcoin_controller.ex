@@ -11,6 +11,19 @@ defmodule PhxServeBtcWeb.BitcoinController do
     render(conn, :index, btc_candles: btc_candles)
   end
 
+  def get_month(conn, _params) do
+    year_month = conn.params["month"]
+    # Validate iso month format YYYY-MM
+    true = Regex.match?(~r/20[0-9][0-9]-(0[0-9]|1[0-2])/, year_month)
+
+    [year, month] = String.split(year_month, "-")
+    start_date = Date.from_erl!({String.to_integer(year), String.to_integer(month), 1})
+    end_date = Date.add(start_date, Date.days_in_month(start_date))
+
+    btc_candles = CandleData.list_btc_candles_date_range(start_date, end_date)
+    render(conn, :index, btc_candles: btc_candles)
+  end
+
   def create(conn, %{"bitcoin" => bitcoin_params}) do
     with {:ok, %Bitcoin{} = bitcoin} <- CandleData.create_bitcoin(bitcoin_params) do
       conn

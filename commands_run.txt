@@ -64,3 +64,25 @@ mix ecto.migrate
     get "/btc_month/:month", BitcoinController, :get_month
 # The recources line isn't really needed just added here since the gen code already set this up for us
 
+# Add get_month function to BitcoinController
+
+# Add CandleData.list_btc_candles_date_range function
+
+# Add to seeds.exs file so we can fill the data with actual btc data
+
+# Create lib/phx_serve_btc/seed_candle_data.ex file to use in the seeds.exs script
+
+# Seed the data:
+mix run priv/repo/seeds.exs
+
+# Verify that the api returns good data
+
+# Now we start on getting this ready for deployment
+
+# Generate the docker file for this
+
+mix phx.gen.release --docker
+
+
+
+
