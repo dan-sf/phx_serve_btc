@@ -1,0 +1,56 @@
+
+# Start the project
+mix phx.new phx_serve_btc --database sqlite3 --no-assets --no-dashboard --no-gettext --no-html --no-live --no-mailer
+
+# Enter project
+cd phx_serve_btc
+
+# Create git repo (also commit changes at this point)
+git init
+git add .
+git commit -m 'Init commit'
+
+# Configure db
+mix ecto.create
+
+# Old commands ran...
+mix phx.gen.context CandleData Bitcoin btc_candles day:date:unique open:float high:float low:float close:float volume:float currency:string
+mix phx.gen.json CandleData Bitcoin btc_candles day:date:unique open:float high:float low:float close:float volume:float currency:string --no-context --no-schema
+
+
+# Single json gen command (should create everything needed...)
+mix phx.gen.json CandleData Bitcoin btc_candles day:date:unique open:float high:float low:float close:float volume:float currency:string
+
+# The above command gives this output
+* creating lib/phx_serve_btc_web/controllers/bitcoin_controller.ex
+* creating lib/phx_serve_btc_web/controllers/bitcoin_json.ex
+* creating lib/phx_serve_btc_web/controllers/changeset_json.ex
+* creating test/phx_serve_btc_web/controllers/bitcoin_controller_test.exs
+* creating lib/phx_serve_btc_web/controllers/fallback_controller.ex
+* creating lib/phx_serve_btc/candle_data/bitcoin.ex
+* creating priv/repo/migrations/20240326005152_create_btc_candles.exs
+* creating lib/phx_serve_btc/candle_data.ex
+* injecting lib/phx_serve_btc/candle_data.ex
+* creating test/phx_serve_btc/candle_data_test.exs
+* injecting test/phx_serve_btc/candle_data_test.exs
+* creating test/support/fixtures/candle_data_fixtures.ex
+* injecting test/support/fixtures/candle_data_fixtures.ex
+
+Some of the generated database columns are unique. Please provide
+unique implementations for the following fixture function(s) in
+test/support/fixtures/candle_data_fixtures.ex:
+
+    def unique_bitcoin_day do
+      raise "implement the logic to generate a unique bitcoin day"
+    end
+
+
+Add the resource to your :api scope in lib/phx_serve_btc_web/router.ex:
+
+    resources "/btc_candles", BitcoinController, except: [:new, :edit]
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
