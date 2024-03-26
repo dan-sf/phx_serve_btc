@@ -17,7 +17,7 @@ defmodule PhxServeBtc.Release do
     load_app()
 
     {:ok, _, _} =
-      Ecto.Migrator.with_repo(PhxServeBtc.Repo, fn repo ->
+      Ecto.Migrator.with_repo(PhxServeBtc.Repo, fn _repo ->
         PhxServeBtc.SeedCandleData.seed(path)
       end)
   end

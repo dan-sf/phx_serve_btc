@@ -140,4 +140,8 @@ cp bitcoin.csv data/ # Actually just move it there and update seeds to point to 
 
 # Exec into the container
 # docker exec -it phx_serve_btc bash
+# Run the seed_btc script (make sure it is executable)
+# bin/seed_btc
+
+# Once the data is seeded in the container, you should be able to query the endpoint successfully
 
