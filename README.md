@@ -1,18 +1,20 @@
 # PhxServeBtc
 
-To start your Phoenix server:
+This is an example repo to demonstrate how to setup a simple api server using the Phoenix web framework. For more information you can check out the [companion blog post](https://www.dsfcode.com/posts/simple-api-server-in-phoenix/) I wrote.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Running the server
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Start with `mix` in local development mode.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```
+mix phx.server
+```
 
-## Learn more
+Start with `compose` based deployment.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```
+docker compose up --build
+```
+
+To validate things are working as expected, navigate to `http://localhost:4000/api/btc_month/2022-01` to see some output data (actual data will only be there if the db is seeded, see the blog post how how to do that).
+
