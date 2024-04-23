@@ -8,20 +8,13 @@ defmodule PhxServeBtc.SeedCandleData do
 
   alias PhxServeBtc.CandleData.Bitcoin
 
-  def doit(name) do
-    IO.puts("Hello")
-    IO.inspect(name)
-    IO.inspect(name)
-    IO.inspect(name)
-  end
-
   def seed(path) do
     Repo.delete_all(Bitcoin)
 
     File.stream!(path)
     |> Stream.map(&String.trim_trailing(&1, "\n"))
     |> Stream.map(&String.split(&1, ","))
-    |> Stream.filter(fn x -> List.first(x) != "Date" end)
+    |> Stream.drop(1)
     |> Enum.map(fn _ = [day, open, high, low, close, volume, currency] ->
       Bitcoin.changeset(
         %Bitcoin{},
